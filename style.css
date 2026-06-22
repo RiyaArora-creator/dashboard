@@ -74,3 +74,21 @@ body{
 .stButton > button:hover{
     background:#1d4ed8;
 }
+
+.hero-banner{
+    background: linear-gradient(135deg,#2563eb,#60a5fa);
+    padding:60px;
+    border-radius:30px;
+    color:white;
+    margin-bottom:40px;
+}
+
+.hero-banner h1{
+    font-size:64px;
+    font-weight:800;
+}
+
+.hero-banner p{
+    font-size:20px;
+    opacity:0.9;
+}
