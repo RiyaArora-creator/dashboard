@@ -1,3 +1,4 @@
+```python
 import streamlit as st
 import pandas as pd
 import plotly.express as px
@@ -14,9 +15,17 @@ with open("style.css") as f:
         unsafe_allow_html=True
     )
 
-# ==================================
+# NAVIGATION
+
+st.markdown("""
+### PeopleOrigin
+
+Home | Solutions | Features | Resources | Contact
+""")
+
+st.markdown("---")
+
 # HERO SECTION
-# ==================================
 
 left, right = st.columns([1, 1.2])
 
@@ -54,51 +63,29 @@ with right:
         use_container_width=True
     )
 
-st.write("")
-
-# ==================================
 # KPI SECTION
-# ==================================
 
 st.markdown("<div class='section-title'>Trusted Worldwide</div>", unsafe_allow_html=True)
 
 a, b, c, d = st.columns(4)
 
-with a:
-    st.markdown("""
-    <div class='kpi-card'>
-    <h2>500+</h2>
-    Organizations
-    </div>
-    """, unsafe_allow_html=True)
+cards = [
+    ("500+", "Organizations"),
+    ("50K+", "Active Users"),
+    ("98%", "Satisfaction"),
+    ("24/7", "Support")
+]
 
-with b:
-    st.markdown("""
-    <div class='kpi-card'>
-    <h2>50K+</h2>
-    Active Users
-    </div>
-    """, unsafe_allow_html=True)
+for col, card in zip([a, b, c, d], cards):
+    with col:
+        st.markdown(f"""
+        <div class='kpi-card'>
+        <h2>{card[0]}</h2>
+        {card[1]}
+        </div>
+        """, unsafe_allow_html=True)
 
-with c:
-    st.markdown("""
-    <div class='kpi-card'>
-    <h2>98%</h2>
-    Satisfaction
-    </div>
-    """, unsafe_allow_html=True)
-
-with d:
-    st.markdown("""
-    <div class='kpi-card'>
-    <h2>24/7</h2>
-    Support
-    </div>
-    """, unsafe_allow_html=True)
-
-# ==================================
 # PLATFORM OVERVIEW
-# ==================================
 
 st.markdown("<div class='section-title'>Platform Overview</div>", unsafe_allow_html=True)
 
@@ -125,22 +112,12 @@ with right:
         "Growth": [120, 220, 380, 520, 700, 920]
     })
 
-    fig = px.area(
-        df,
-        x="Month",
-        y="Growth"
-    )
-
+    fig = px.area(df, x="Month", y="Growth")
     fig.update_layout(height=350)
 
-    st.plotly_chart(
-        fig,
-        use_container_width=True
-    )
+    st.plotly_chart(fig, use_container_width=True)
 
-# ==================================
 # CORE SOLUTIONS
-# ==================================
 
 st.markdown("<div class='section-title'>Core Solutions</div>", unsafe_allow_html=True)
 
@@ -166,9 +143,7 @@ with r5:
 with r6:
     st.warning("Reports & Compliance")
 
-# ==================================
 # ANALYTICS
-# ==================================
 
 st.markdown("<div class='section-title'>Data Driven Insights</div>", unsafe_allow_html=True)
 
@@ -184,14 +159,9 @@ fig2 = px.line(
     markers=True
 )
 
-st.plotly_chart(
-    fig2,
-    use_container_width=True
-)
+st.plotly_chart(fig2, use_container_width=True)
 
-# ==================================
 # PROCESS
-# ==================================
 
 st.markdown("<div class='section-title'>Our Process</div>", unsafe_allow_html=True)
 
@@ -209,9 +179,29 @@ with p3:
 with p4:
     st.success("04 Optimize")
 
-# ==================================
+# CLIENTS
+
+st.markdown("<div class='section-title'>Trusted By Growing Organizations</div>", unsafe_allow_html=True)
+
+c1, c2, c3, c4, c5 = st.columns(5)
+
+clients = [
+    "TechNova",
+    "BrightPath",
+    "CloudPeak",
+    "NextGen",
+    "StrideUp"
+]
+
+for col, name in zip([c1, c2, c3, c4, c5], clients):
+    with col:
+        st.markdown(f"""
+        <div class='kpi-card'>
+        {name}
+        </div>
+        """, unsafe_allow_html=True)
+
 # TESTIMONIALS
-# ==================================
 
 st.markdown("<div class='section-title'>Customer Stories</div>", unsafe_allow_html=True)
 
@@ -235,9 +225,7 @@ with t2:
     </div>
     """, unsafe_allow_html=True)
 
-# ==================================
 # RESOURCES
-# ==================================
 
 st.markdown("<div class='section-title'>Insights & Resources</div>", unsafe_allow_html=True)
 
@@ -265,21 +253,30 @@ for i, (col, title) in enumerate(zip([c1, c2, c3], cards)):
             key=f"blog_{i}"
         )
 
-# ==================================
+# FAQ
+
+st.markdown("<div class='section-title'>Frequently Asked Questions</div>", unsafe_allow_html=True)
+
+with st.expander("How does the platform help organizations?"):
+    st.write("It centralizes workforce operations and analytics.")
+
+with st.expander("Can the platform scale with growth?"):
+    st.write("Yes, it is designed for growing organizations.")
+
+with st.expander("Does it provide reporting capabilities?"):
+    st.write("Yes, advanced analytics and reporting are available.")
+
 # CONTACT
-# ==================================
 
 st.markdown("<div class='section-title'>Contact Us</div>", unsafe_allow_html=True)
 
-name = st.text_input("Name")
-email = st.text_input("Email")
-message = st.text_area("Message")
+st.text_input("Name")
+st.text_input("Email")
+st.text_area("Message")
 
 st.button("Send Message")
 
-# ==================================
 # FOOTER
-# ==================================
 
 st.markdown("---")
 
@@ -289,3 +286,4 @@ st.markdown("""
 Modern Workforce Platform for Growing Organizations
 </div>
 """, unsafe_allow_html=True)
+```
