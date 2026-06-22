@@ -50,7 +50,6 @@ with right:
     )
 
 st.write("")
-
 # KPI SECTION
 
 a,b,c,d = st.columns(4)
