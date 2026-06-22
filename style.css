@@ -4,7 +4,7 @@ body{
 
 .main .block-container{
     max-width:1400px;
-    padding-top:0rem;
+    padding-top:1rem;
 }
 
 .hero-title{
@@ -21,6 +21,7 @@ body{
 .hero-text{
     font-size:20px;
     color:#475569;
+    margin-top:20px;
 }
 
 .kpi-card{
@@ -28,67 +29,48 @@ body{
     padding:25px;
     border-radius:20px;
     text-align:center;
-    box-shadow:0 8px 25px rgba(0,0,0,.06);
+    box-shadow:0 10px 30px rgba(0,0,0,.08);
 }
 
 .solution-card{
     background:white;
     padding:25px;
     border-radius:20px;
-    min-height:220px;
-    transition:.3s;
-    box-shadow:0 8px 25px rgba(0,0,0,.05);
+    min-height:200px;
+    transition:0.3s;
+    box-shadow:0 10px 30px rgba(0,0,0,.06);
 }
 
 .solution-card:hover{
-    transform:translateY(-8px);
+    transform:translateY(-10px);
 }
 
 .section-title{
     text-align:center;
     font-size:42px;
     font-weight:700;
-    margin-top:50px;
+    margin-top:60px;
     margin-bottom:30px;
+    color:#0f172a;
 }
 
 .footer{
     background:white;
     padding:40px;
     border-radius:20px;
-}
-.hero-section{
-    padding-top:60px;
-    padding-bottom:60px;
+    text-align:center;
+    margin-top:40px;
 }
 
-.gradient-box{
-    background: linear-gradient(135deg,#2563eb,#60a5fa);
+.stButton > button{
+    background:#2563eb;
     color:white;
-    padding:40px;
-    border-radius:25px;
-}
-
-.stat-card{
-    background:white;
-    border-radius:20px;
-    padding:25px;
-    text-align:center;
-    box-shadow:0 10px 30px rgba(0,0,0,.08);
-}
-
-.client-card{
-    background:white;
-    padding:20px;
-    border-radius:20px;
-    text-align:center;
+    border:none;
+    border-radius:12px;
+    padding:10px 25px;
     font-weight:600;
-    box-shadow:0 8px 20px rgba(0,0,0,.05);
 }
 
-.testimonial-card{
-    background:white;
-    padding:25px;
-    border-radius:20px;
-    box-shadow:0 8px 20px rgba(0,0,0,.05);
+.stButton > button:hover{
+    background:#1d4ed8;
 }
