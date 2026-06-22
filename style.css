@@ -1,0 +1,59 @@
+body{
+    background:#f5f9ff;
+}
+
+.main .block-container{
+    max-width:1400px;
+    padding-top:0rem;
+}
+
+.hero-title{
+    font-size:72px;
+    font-weight:800;
+    line-height:1.1;
+    color:#0f172a;
+}
+
+.hero-blue{
+    color:#2563eb;
+}
+
+.hero-text{
+    font-size:20px;
+    color:#475569;
+}
+
+.kpi-card{
+    background:white;
+    padding:25px;
+    border-radius:20px;
+    text-align:center;
+    box-shadow:0 8px 25px rgba(0,0,0,.06);
+}
+
+.solution-card{
+    background:white;
+    padding:25px;
+    border-radius:20px;
+    min-height:220px;
+    transition:.3s;
+    box-shadow:0 8px 25px rgba(0,0,0,.05);
+}
+
+.solution-card:hover{
+    transform:translateY(-8px);
+}
+
+.section-title{
+    text-align:center;
+    font-size:42px;
+    font-weight:700;
+    margin-top:50px;
+    margin-bottom:30px;
+}
+
+.footer{
+    background:white;
+    padding:40px;
+    border-radius:20px;
+}
