@@ -34,11 +34,12 @@ st.markdown("""
 }
 
 .kpi-card {
-    background: #2563EB;
+    background: linear-gradient(135deg,#0F172A,#2563EB);
     color: white;
     padding: 25px;
     border-radius: 20px;
     text-align: center;
+    box-shadow: 0px 10px 25px rgba(37,99,235,0.25);
 }
 
 .module-card {
