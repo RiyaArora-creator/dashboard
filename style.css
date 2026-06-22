@@ -57,3 +57,38 @@ body{
     padding:40px;
     border-radius:20px;
 }
+.hero-section{
+    padding-top:60px;
+    padding-bottom:60px;
+}
+
+.gradient-box{
+    background: linear-gradient(135deg,#2563eb,#60a5fa);
+    color:white;
+    padding:40px;
+    border-radius:25px;
+}
+
+.stat-card{
+    background:white;
+    border-radius:20px;
+    padding:25px;
+    text-align:center;
+    box-shadow:0 10px 30px rgba(0,0,0,.08);
+}
+
+.client-card{
+    background:white;
+    padding:20px;
+    border-radius:20px;
+    text-align:center;
+    font-weight:600;
+    box-shadow:0 8px 20px rgba(0,0,0,.05);
+}
+
+.testimonial-card{
+    background:white;
+    padding:25px;
+    border-radius:20px;
+    box-shadow:0 8px 20px rgba(0,0,0,.05);
+}
