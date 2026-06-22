@@ -7,85 +7,58 @@ st.set_page_config(
     layout="wide"
 )
 
-# =========================
-# CUSTOM STYLING
-# =========================
+# ======================
+# CUSTOM CSS
+# ======================
 
 st.markdown("""
 <style>
 
 .main{
-    background-color:#f8fbff;
+    background-color:#f7fbff;
 }
 
-.hero{
-    background:linear-gradient(135deg,#0f172a,#2563eb);
-    padding:70px;
-    border-radius:25px;
-    color:white;
-    margin-bottom:40px;
-}
-
-.card{
-    padding:25px;
-    border-radius:20px;
+.kpi-card{
+    padding:20px;
+    border-radius:15px;
     color:white;
     text-align:center;
-    box-shadow:0px 8px 20px rgba(0,0,0,0.1);
-}
-
-.feature-card{
-    background:white;
-    padding:20px;
-    border-radius:20px;
-    box-shadow:0px 6px 15px rgba(0,0,0,0.08);
 }
 
 .footer{
     text-align:center;
     color:gray;
-    padding:30px;
+    padding:20px;
 }
 
 </style>
 """, unsafe_allow_html=True)
 
-# =========================
-# SIDEBAR
-# =========================
-
-st.sidebar.title("PeopleOrigin")
-
-page = st.sidebar.radio(
-    "Navigation",
-    [
-        "Dashboard",
-        "Analytics",
-        "Workforce",
-        "Reports"
-    ]
-)
-
-st.sidebar.success("System Online")
-
-# =========================
+# ======================
 # HERO SECTION
-# =========================
+# ======================
 
 st.markdown("""
-<div class="hero">
-<h1 style="font-size:60px;">
-Workforce Intelligence Platform
-</h1>
+<div style="
+background:linear-gradient(135deg,#1e3a8a,#60a5fa);
+padding:50px;
+border-radius:20px;
+color:white;
+">
 
-<p style="font-size:20px;">
-Manage people, productivity, analytics and operations
-through one modern digital platform.
+<h1>Workforce Intelligence Platform</h1>
+
+<p>
+Manage people, attendance, performance and analytics
+through one modern workforce platform.
 </p>
+
 </div>
 """, unsafe_allow_html=True)
 
-left,right = st.columns([1,1])
+st.write("")
+
+left, right = st.columns([1,1])
 
 with left:
     st.button("Request Demo")
@@ -97,236 +70,179 @@ with right:
         use_container_width=True
     )
 
-# =========================
+# ======================
 # KPI SECTION
-# =========================
+# ======================
 
-st.subheader("Trusted Worldwide")
+st.subheader("Workforce Overview")
 
-c1,c2,c3,c4 = st.columns(4)
+k1,k2,k3,k4 = st.columns(4)
 
-with c1:
-    st.markdown("""
-    <div class="card" style="background:#2563eb;">
-    <h2>500+</h2>
-    Organizations
-    </div>
-    """, unsafe_allow_html=True)
+with k1:
+    st.metric("Employees","1,248","+12")
 
-with c2:
-    st.markdown("""
-    <div class="card" style="background:#10b981;">
-    <h2>50K+</h2>
-    Active Users
-    </div>
-    """, unsafe_allow_html=True)
+with k2:
+    st.metric("Attendance","96%","+2%")
 
-with c3:
-    st.markdown("""
-    <div class="card" style="background:#f59e0b;">
-    <h2>98%</h2>
-    Satisfaction
-    </div>
-    """, unsafe_allow_html=True)
+with k3:
+    st.metric("Open Roles","18","+4")
 
-with c4:
-    st.markdown("""
-    <div class="card" style="background:#ef4444;">
-    <h2>24/7</h2>
-    Support
-    </div>
-    """, unsafe_allow_html=True)
+with k4:
+    st.metric("Pending Leaves","23","-3")
 
-# =========================
-# PLATFORM MODULES
-# =========================
-
-st.subheader("Platform Modules")
-
-m1,m2,m3 = st.columns(3)
-
-with m1:
-    st.image(
-        "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40",
-        use_container_width=True
-    )
-    st.markdown("### People Management")
-    st.write("Manage workforce records and employee lifecycle.")
-
-with m2:
-    st.image(
-        "https://images.unsplash.com/photo-1460925895917-afdab827c52f",
-        use_container_width=True
-    )
-    st.markdown("### Workforce Analytics")
-    st.write("Gain insights through interactive reporting.")
-
-with m3:
-    st.image(
-        "https://images.unsplash.com/photo-1553877522-43269d4ea984",
-        use_container_width=True
-    )
-    st.markdown("### Performance Tracking")
-    st.write("Track goals, performance and productivity.")
-
-# =========================
-# DASHBOARD PREVIEW
-# =========================
-
-st.subheader("Interactive Dashboard Preview")
-
-st.image(
-    "https://images.unsplash.com/photo-1460925895917-afdab827c52f",
-    use_container_width=True
-)
-
-# =========================
+# ======================
 # ANALYTICS
-# =========================
+# ======================
 
-st.subheader("Organization Growth")
+st.subheader("Employee Growth")
 
 growth = pd.DataFrame({
     "Month":["Jan","Feb","Mar","Apr","May","Jun"],
-    "Employees":[120,250,380,550,780,1000]
+    "Employees":[150,260,420,580,760,980]
 })
 
 fig = px.area(
     growth,
     x="Month",
-    y="Employees",
-    title="Employee Growth Trend"
+    y="Employees"
 )
 
-st.plotly_chart(fig, use_container_width=True)
+st.plotly_chart(
+    fig,
+    use_container_width=True
+)
 
-# =========================
-# DEPARTMENT DISTRIBUTION
-# =========================
+# ======================
+# DEPARTMENT CHART
+# ======================
 
-st.subheader("Department Distribution")
+left,right = st.columns(2)
 
-dept = pd.DataFrame({
-    "Department":["HR","IT","Finance","Operations","Support"],
-    "Employees":[45,120,35,80,50]
+with left:
+
+    st.subheader("Department Distribution")
+
+    dept = pd.DataFrame({
+        "Department":[
+            "HR",
+            "IT",
+            "Finance",
+            "Operations",
+            "Support"
+        ],
+        "Employees":[
+            45,
+            120,
+            35,
+            80,
+            50
+        ]
+    })
+
+    fig2 = px.pie(
+        dept,
+        names="Department",
+        values="Employees",
+        hole=0.5
+    )
+
+    st.plotly_chart(
+        fig2,
+        use_container_width=True
+    )
+
+with right:
+
+    st.subheader("Team Performance")
+
+    team = pd.DataFrame({
+        "Team":[
+            "HR",
+            "IT",
+            "Finance",
+            "Operations"
+        ],
+        "Score":[
+            88,
+            95,
+            84,
+            90
+        ]
+    })
+
+    fig3 = px.bar(
+        team,
+        x="Team",
+        y="Score"
+    )
+
+    st.plotly_chart(
+        fig3,
+        use_container_width=True
+    )
+
+# ======================
+# RECENT ACTIVITIES
+# ======================
+
+st.subheader("Recent Activities")
+
+activities = pd.DataFrame({
+    "Activity":[
+        "New employee joined IT team",
+        "Leave request approved",
+        "Performance review completed",
+        "Training program assigned"
+    ]
 })
 
-fig2 = px.pie(
-    dept,
-    names="Department",
-    values="Employees",
-    hole=0.5
+st.dataframe(
+    activities,
+    use_container_width=True,
+    hide_index=True
 )
 
-st.plotly_chart(fig2, use_container_width=True)
+# ======================
+# ANNOUNCEMENTS
+# ======================
 
-# =========================
-# WORKFORCE EXPLORER
-# =========================
+st.subheader("Announcements")
 
-st.subheader("Workforce Explorer")
-
-f1,f2 = st.columns(2)
-
-with f1:
-    department = st.selectbox(
-        "Department",
-        ["HR","IT","Finance","Operations"]
-    )
-
-with f2:
-    month = st.selectbox(
-        "Month",
-        ["Jan","Feb","Mar","Apr","May","Jun"]
-    )
-
-st.success(
-    f"Showing workforce data for {department} during {month}"
+st.info(
+    "Quarterly performance review cycle starts next week."
 )
 
-# =========================
-# PROJECT PROGRESS
-# =========================
+st.info(
+    "Employee engagement survey opens on Monday."
+)
 
-st.subheader("Project Progress")
+st.info(
+    "Leadership town hall scheduled for Friday."
+)
 
-st.write("Recruitment Campaign")
-st.progress(75)
+# ======================
+# QUICK ACTIONS
+# ======================
 
-st.write("Performance Reviews")
-st.progress(90)
+st.subheader("Quick Actions")
 
-st.write("Training Completion")
-st.progress(60)
+a,b,c,d = st.columns(4)
 
-# =========================
-# TESTIMONIALS
-# =========================
+with a:
+    st.button("Add Employee")
 
-st.subheader("Customer Stories")
+with b:
+    st.button("Approve Leave")
 
-t1,t2 = st.columns(2)
+with c:
+    st.button("Generate Report")
 
-with t1:
-    st.info("""
-    Operational Excellence
+with d:
+    st.button("View Analytics")
 
-    The platform transformed our workforce operations
-    and improved visibility.
-    """)
-
-with t2:
-    st.success("""
-    Better Decision Making
-
-    Real-time analytics helped leadership teams
-    make faster decisions.
-    """)
-
-# =========================
-# FAQ
-# =========================
-
-st.subheader("Frequently Asked Questions")
-
-with st.expander("How does the platform help organizations?"):
-    st.write("Centralizes workforce operations and analytics.")
-
-with st.expander("Can it scale with growth?"):
-    st.write("Yes. Designed for growing organizations.")
-
-with st.expander("Does it provide reporting?"):
-    st.write("Yes. Interactive dashboards and reports are available.")
-
-# =========================
-# CTA SECTION
-# =========================
-
-st.markdown("""
-<div style="
-background:linear-gradient(135deg,#2563eb,#60a5fa);
-padding:50px;
-border-radius:25px;
-color:white;
-text-align:center;
-margin-top:30px;
-">
-
-<h1>Ready To Transform Your Workforce?</h1>
-
-<p>
-Modern workforce management, analytics and reporting
-in one platform.
-</p>
-
-</div>
-""", unsafe_allow_html=True)
-
-st.button("Get Started")
-
-# =========================
+# ======================
 # CONTACT
-# =========================
+# ======================
 
 st.subheader("Contact Us")
 
@@ -336,14 +252,14 @@ st.text_area("Message")
 
 st.button("Send Message")
 
-# =========================
+# ======================
 # FOOTER
-# =========================
+# ======================
 
 st.markdown("---")
 
 st.markdown("""
-<div class="footer">
+<div class='footer'>
 <h3>PeopleOrigin</h3>
 Modern Workforce Platform for Growing Organizations
 <br><br>
