@@ -7,98 +7,208 @@ st.set_page_config(
     layout="wide"
 )
 
-st.title("PeopleOrigin")
-st.caption("Modern Workforce Platform")
+# ==========================
+# CUSTOM CSS
+# ==========================
 
-st.divider()
+st.markdown("""
+<style>
+.main {
+    background-color: #f5f9ff;
+}
 
-# HERO
+.hero {
+    background: linear-gradient(135deg,#2563eb,#60a5fa);
+    padding: 50px;
+    border-radius: 20px;
+    text-align: center;
+    color: white;
+    margin-bottom: 30px;
+}
 
-left, right = st.columns([1, 1])
+.card {
+    padding: 20px;
+    border-radius: 15px;
+    color: white;
+    text-align: center;
+}
 
-with left:
-    st.markdown("# Simplify Workforce")
-    st.markdown("## Empower People")
+.footer {
+    text-align:center;
+    padding:20px;
+    color:gray;
+}
+</style>
+""", unsafe_allow_html=True)
 
-    st.write(
-        """
-        Modern workforce platform for growing organizations.
-        Streamline operations, analytics, collaboration,
-        and workforce engagement from one place.
-        """
-    )
+# ==========================
+# SIDEBAR
+# ==========================
 
-    st.button("Request Demo")
-    st.button("Explore Platform")
+st.sidebar.title("PeopleOrigin")
 
-with right:
-    st.image(
-        "https://images.unsplash.com/photo-1551288049-bebda4e38f71",
-        use_container_width=True
-    )
-
-# KPI SECTION
-
-st.header("Trusted Worldwide")
-
-k1, k2, k3, k4 = st.columns(4)
-
-with k1:
-    st.metric("Organizations", "500+")
-
-with k2:
-    st.metric("Users", "50K+")
-
-with k3:
-    st.metric("Satisfaction", "98%")
-
-with k4:
-    st.metric("Support", "24/7")
-
-# DASHBOARD PREVIEW
-
-st.header("Interactive Dashboard Preview")
-
-st.image(
-    "https://images.unsplash.com/photo-1460925895917-afdab827c52f",
-    use_container_width=True
+page = st.sidebar.radio(
+    "Navigation",
+    ["Dashboard", "Analytics", "Workforce", "Reports"]
 )
 
-# PLATFORM OVERVIEW
+st.sidebar.success("System Online")
 
-st.header("Platform Overview")
+# ==========================
+# HERO SECTION
+# ==========================
 
-left, right = st.columns([1, 1.5])
+st.markdown("""
+<div class="hero">
+<h1>PeopleOrigin</h1>
+<h3>Modern Workforce Intelligence Platform</h3>
+<p>Analytics • Workforce • Productivity • Insights</p>
+</div>
+""", unsafe_allow_html=True)
 
-with left:
-    st.subheader("One Platform. Multiple Capabilities")
+# ==========================
+# KPI CARDS
+# ==========================
 
-    st.write(
-        """
-        Manage workforce operations,
-        monitor productivity,
-        analyze trends,
-        and improve decision-making.
-        """
+st.subheader("Trusted Worldwide")
+
+c1, c2, c3, c4 = st.columns(4)
+
+with c1:
+    st.markdown("""
+    <div class="card" style="background:#2563eb">
+    <h2>500+</h2>
+    Organizations
+    </div>
+    """, unsafe_allow_html=True)
+
+with c2:
+    st.markdown("""
+    <div class="card" style="background:#10b981">
+    <h2>50K+</h2>
+    Active Users
+    </div>
+    """, unsafe_allow_html=True)
+
+with c3:
+    st.markdown("""
+    <div class="card" style="background:#f59e0b">
+    <h2>98%</h2>
+    Satisfaction
+    </div>
+    """, unsafe_allow_html=True)
+
+with c4:
+    st.markdown("""
+    <div class="card" style="background:#ef4444">
+    <h2>24/7</h2>
+    Support
+    </div>
+    """, unsafe_allow_html=True)
+
+# ==========================
+# DASHBOARD PREVIEW
+# ==========================
+
+st.subheader("Interactive Dashboard Preview")
+
+df = pd.DataFrame({
+    "Month":["Jan","Feb","Mar","Apr","May","Jun"],
+    "Growth":[120,220,380,520,700,920]
+})
+
+fig = px.area(
+    df,
+    x="Month",
+    y="Growth",
+    title="Organization Growth"
+)
+
+st.plotly_chart(fig, use_container_width=True)
+
+# ==========================
+# ANALYTICS
+# ==========================
+
+st.subheader("Workforce Analytics")
+
+df2 = pd.DataFrame({
+    "Month":["Jan","Feb","Mar","Apr","May","Jun"],
+    "Employees":[200,350,450,650,800,1000]
+})
+
+fig2 = px.line(
+    df2,
+    x="Month",
+    y="Employees",
+    markers=True,
+    title="Employee Growth"
+)
+
+st.plotly_chart(fig2, use_container_width=True)
+
+# ==========================
+# WORKFORCE DISTRIBUTION
+# ==========================
+
+st.subheader("Workforce Distribution")
+
+dept = pd.DataFrame({
+    "Department":["HR","IT","Finance","Operations","Support"],
+    "Employees":[45,120,35,80,50]
+})
+
+fig3 = px.pie(
+    dept,
+    names="Department",
+    values="Employees",
+    hole=0.5
+)
+
+st.plotly_chart(fig3, use_container_width=True)
+
+# ==========================
+# FILTERS
+# ==========================
+
+st.subheader("Workforce Explorer")
+
+col1, col2 = st.columns(2)
+
+with col1:
+    department = st.selectbox(
+        "Department",
+        ["HR","IT","Finance","Operations"]
     )
 
-with right:
-    df = pd.DataFrame({
-        "Month": ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
-        "Growth": [120, 220, 380, 520, 700, 920]
-    })
-
-    fig = px.area(
-        df,
-        x="Month",
-        y="Growth"
+with col2:
+    month = st.selectbox(
+        "Month",
+        ["Jan","Feb","Mar","Apr","May"]
     )
 
-    st.plotly_chart(fig, use_container_width=True)
+st.success(f"Showing data for {department} - {month}")
 
+# ==========================
+# PROGRESS
+# ==========================
+
+st.subheader("Project Progress")
+
+st.write("Recruitment Campaign")
+st.progress(75)
+
+st.write("Performance Reviews")
+st.progress(90)
+
+st.write("Training Completion")
+st.progress(60)
+
+# ==========================
 # SOLUTIONS
+# ==========================
 
-st.header("Core Solutions")
+st.subheader("Core Solutions")
 
 s1, s2, s3 = st.columns(3)
 
@@ -111,66 +221,14 @@ with s2:
 with s3:
     st.warning("Performance Insights")
 
-# ANALYTICS
-
-st.header("Workforce Analytics")
-
-df2 = pd.DataFrame({
-    "Month": ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
-    "Users": [200, 350, 450, 650, 800, 1000]
-})
-
-fig2 = px.line(
-    df2,
-    x="Month",
-    y="Users",
-    markers=True
-)
-
-st.plotly_chart(fig2, use_container_width=True)
-
-# CLIENTS
-
-st.header("Trusted By Organizations")
-
-c1, c2, c3, c4, c5 = st.columns(5)
-
-c1.success("TechNova")
-c2.success("BrightPath")
-c3.success("CloudPeak")
-c4.success("NextGen")
-c5.success("StrideUp")
-
-# TESTIMONIALS
-
-st.header("Customer Stories")
-
-t1, t2 = st.columns(2)
-
-with t1:
-    st.success(
-        """
-        Operational Excellence
-
-        The platform transformed our operations.
-        """
-    )
-
-with t2:
-    st.info(
-        """
-        Better Visibility
-
-        Analytics improved decision making.
-        """
-    )
-
+# ==========================
 # FAQ
+# ==========================
 
-st.header("Frequently Asked Questions")
+st.subheader("Frequently Asked Questions")
 
 with st.expander("How does the platform help organizations?"):
-    st.write("Centralizes operations and analytics.")
+    st.write("Centralizes workforce operations and analytics.")
 
 with st.expander("Can the platform scale with growth?"):
     st.write("Yes, it is designed for growing organizations.")
@@ -178,9 +236,11 @@ with st.expander("Can the platform scale with growth?"):
 with st.expander("Does it provide reporting capabilities?"):
     st.write("Yes, advanced analytics and reporting are available.")
 
+# ==========================
 # CONTACT
+# ==========================
 
-st.header("Contact Us")
+st.subheader("Contact Us")
 
 st.text_input("Name")
 st.text_input("Email")
@@ -188,14 +248,16 @@ st.text_area("Message")
 
 st.button("Send Message")
 
-st.divider()
+# ==========================
+# FOOTER
+# ==========================
 
-st.markdown(
-    """
-    ### PeopleOrigin
+st.markdown("---")
 
-    Modern Workforce Platform for Growing Organizations
-
-    © 2026 All Rights Reserved
-    """
-)
+st.markdown("""
+<div class="footer">
+<h3>PeopleOrigin</h3>
+Modern Workforce Platform for Growing Organizations<br><br>
+© 2026 All Rights Reserved
+</div>
+""", unsafe_allow_html=True)
